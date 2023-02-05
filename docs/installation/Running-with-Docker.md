@@ -14,7 +14,7 @@ Installing the openrouteservice backend service with Docker is quite straightfor
 
 Use [Dockerhub's hosted Openrouteservice image](https://hub.docker.com/r/openrouteservice/openrouteservice) or build your own image
 
--   either with `docker run`
+- either with `docker run`
 
 ```bash
 # create directories for volumes to mount as local user
@@ -31,7 +31,7 @@ docker run -dt -u "${UID}:${GID}" \
   openrouteservice/openrouteservice:latest
 ```
 
--   or with `docker-compose`
+- or with `docker-compose`
 
 ```bash
 cd docker
@@ -41,7 +41,6 @@ docker-compose up -d
 ```
 
 If you need to change the UID the ors is running with, you can use these variables:
-
 ```bash
 # set it explicitly to 1001
 ORS_UID=1001 ORS_GID=1001 docker-compose up -d
@@ -52,7 +51,7 @@ ORS_UID=${UID} ORS_GID=${GID} docker-compose up -d
 
 This will:
 
-1. Build the openrouteservice [war file](<https://www.wikiwand.com/en/WAR_(file_format)>) from the local codebase and on container startup a local `./conf` folder is created which contains the `ors-config.json` controlling ORS behaviour. If you map a local `your_osm.pbf` to the container's `/ors-core/data/osm_file.pbf`, it will build a graph from that OSM file.
+1. Build the openrouteservice [war file](https://www.wikiwand.com/en/WAR_(file_format)) from the local codebase and on container startup a local `./conf` folder is created which contains the `ors-config.json` controlling ORS behaviour. If you map a local `your_osm.pbf` to the container's `/ors-core/data/osm_file.pbf`, it will build a graph from that OSM file.
 2. Launch the openrouteservice service on port `8080` within a tomcat container at the address `http://localhost:8080/ors`.
 
 After container launch, modify the `./conf/ors-config.json` to your needs, and restart the container. Alternatively you can map an existing `ors-config.json` which you have locally to the container's `/ors-conf/ors-config.json` to initialize ORS immediately. If you changed the OSM file after the first container start, don't forget to use `BUILD_GRAPHS=True` to force a rebuild of the graph(s) (or delete the `./graphs` folder, which is the same thing).
@@ -61,20 +60,20 @@ After container launch, modify the `./conf/ors-config.json` to your needs, and r
 
 There are some important directories one might want to preserve on the host machine, to survive container regeneration. These directories should be mapped as volumes.
 
--   `/ors-core/data/graphs`: Contains the built graphs after ORS intialized.
--   `/ors-core/data/elevation_cache`: Contains the CGIAR elevation tiles if elevation was specified.
--   `/var/log/ors/`: Contains the ORS logs.
--   `/usr/local/tomcat/logs`: Contains the Tomcat logs.
--   `/ors-conf`: Contains the `ors-config.json` which is used to control ORS.
--   `/ors-core/data/osm_file.pbf`: The OSM file being used to generate graphs.
+- `/ors-core/data/graphs`: Contains the built graphs after ORS intialized.
+- `/ors-core/data/elevation_cache`: Contains the CGIAR elevation tiles if elevation was specified.
+- `/var/log/ors/`: Contains the ORS logs.
+- `/usr/local/tomcat/logs`: Contains the Tomcat logs.
+- `/ors-conf`: Contains the `ors-config.json` which is used to control ORS.
+- `/ors-core/data/osm_file.pbf`: The OSM file being used to generate graphs.
 
 Look at the [`docker-compose.yml`](https://github.com/GIScience/openrouteservice/blob/master/docker/docker-compose.yml) for examples.
 
 ## Environment variables
 
--   `BUILD_GRAPHS`: Forces ORS to rebuild the routings graph(s) when set to `True`. Useful when another PBF is specified in the Docker volume mapping to `/ors-core/data/osm_file.pbf`
--   `JAVA_OPTS`: Custom Java runtime options, such as `-Xms` or `-Xmx`
--   `CATALINA_OPTS`: Custom Catalina options
+- `BUILD_GRAPHS`: Forces ORS to rebuild the routings graph(s) when set to `True`. Useful when another PBF is specified in the Docker volume mapping to `/ors-core/data/osm_file.pbf`
+- `JAVA_OPTS`: Custom Java runtime options, such as `-Xms` or `-Xmx`
+- `CATALINA_OPTS`: Custom Catalina options
 
 Specify either during container startup or in `docker-compose.yml`.
 
@@ -82,8 +81,8 @@ Specify either during container startup or in `docker-compose.yml`.
 
 When building the image, the following arguments are customizable:
 
--   `ORS_CONFIG`: Can be changed to specify the location of a custom `ors-config.json` file. Default `./openrouteservice/src/main/resources/ors-config-sample.json`.
--   `OSM_FILE`: Can be changed to point to a local custom OSM file. Default `./openrouteservice/src/main/files/sweden-latest.osm.pbf`.
+- `ORS_CONFIG`: Can be changed to specify the location of a custom `ors-config.json` file. Default `./openrouteservice/src/main/resources/ors-config-sample.json`.
+- `OSM_FILE`: Can be changed to point to a local custom OSM file. Default `./openrouteservice/src/main/files/heidelberg.osm.gz`.
 
 ## Customization
 

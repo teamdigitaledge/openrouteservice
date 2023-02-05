@@ -2,6 +2,7 @@
 	"ors": {
 		"info": {
 			"base_url": "https://openrouteservice.org/",
+			"swagger_documentation_url": "https://api.openrouteservice.org/",
 			"support_mail": "support@openrouteservice.org",
 			"author_tag": "openrouteservice",
 			"content_licence": "LGPL 3.0"
@@ -24,7 +25,7 @@
 						"value": 50000
 					},
 					{
-						"profiles": "driving-car, driving-hgv",
+						"profiles": "driving-car, cycling-regular",
 						"value": 100000
 					}
 				],
@@ -34,7 +35,7 @@
 						"value": 18000
 					},
 					{
-						"profiles": "driving-car, driving-hgv",
+						"profiles": "driving-car, cycling-regular",
 						"value": 3600
 					}
 				],
@@ -45,7 +46,7 @@
 							"value": 50000
 						},
 						{
-							"profiles": "driving-car, driving-hgv",
+							"profiles": "driving-car, cycling-regular",
 							"value": 500000
 						}
 					],
@@ -55,7 +56,7 @@
 							"value": 18000
 						},
 						{
-							"profiles": "driving-car, driving-hgv",
+							"profiles": "driving-car, cycling-regular",
 							"value": 10800
 						}
 					],
@@ -187,51 +188,6 @@
 							}
 						}
 					},
-					"profile-hgv": {
-						"profiles": "driving-hgv",
-						"parameters": {
-							"encoder_flags_size": 8,
-							"encoder_options": "turn_costs=true|block_fords=false|use_acceleration=true",
-							"maximum_distance": 100000,
-							"elevation": true,
-							"preparation": {
-								"min_network_size": 200,
-								"min_one_way_network_size": 200,
-								"methods": {
-									"ch": {
-										"enabled": true,
-										"threads": 1,
-										"weightings": "recommended"
-									},
-									"core": {
-										"enabled": true,
-										"threads": 1,
-										"weightings": "recommended,shortest",
-										"landmarks": 64,
-										"lmsets": "highways;allow_all"
-									}
-								}
-							},
-							"execution": {
-								"methods": {
-									"ch": {
-										"disabling_allowed": true
-									},
-									"core": {
-										"disabling_allowed": true,
-										"active_landmarks": 6
-									}
-								}
-							},
-							"ext_storages": {
-								"WayCategory": {},
-								"HeavyVehicle": {
-									"restrictions": true
-								},
-								"WaySurfaceType": {}
-							}
-						}
-					},
 					"profile-bike-regular": {
 						"profiles": "cycling-regular",
 						"parameters": {
@@ -242,87 +198,6 @@
 								"WaySurfaceType": {},
 								"HillIndex": {},
 								"TrailDifficulty": {}
-							}
-						}
-					},
-					"profile-bike-mountain": {
-						"profiles": "cycling-mountain",
-						"parameters": {
-							"encoder_options": "consider_elevation=true|turn_costs=true|block_fords=false",
-							"elevation": true,
-							"ext_storages": {
-								"WayCategory": {},
-								"WaySurfaceType": {},
-								"HillIndex": {},
-								"TrailDifficulty": {}
-							}
-						}
-					},
-					"profile-bike-road": {
-						"profiles": "cycling-road",
-						"parameters": {
-							"encoder_options": "consider_elevation=true|turn_costs=true|block_fords=false",
-							"elevation": true,
-							"ext_storages": {
-								"WayCategory": {},
-								"WaySurfaceType": {},
-								"HillIndex": {},
-								"TrailDifficulty": {}
-							}
-						}
-					},
-					"profile-bike-electric": {
-						"profiles": "cycling-electric",
-						"parameters": {
-							"encoder_options": "consider_elevation=true|turn_costs=true|block_fords=false",
-							"elevation": true,
-							"ext_storages": {
-								"WayCategory": {},
-								"WaySurfaceType": {},
-								"HillIndex": {},
-								"TrailDifficulty": {}
-							}
-						}
-					},
-					"profile-walking": {
-						"profiles": "foot-walking",
-						"parameters": {
-							"encoder_options": "block_fords=false",
-							"elevation": true,
-							"ext_storages": {
-								"WayCategory": {},
-								"WaySurfaceType": {},
-								"HillIndex": {},
-								"TrailDifficulty": {}
-							}
-						}
-					},
-					"profile-hiking": {
-						"profiles": "foot-hiking",
-						"parameters": {
-							"encoder_options": "block_fords=false",
-							"elevation": true,
-							"ext_storages": {
-								"WayCategory": {},
-								"WaySurfaceType": {},
-								"HillIndex": {},
-								"TrailDifficulty": {}
-							}
-						}
-					},
-					"profile-wheelchair": {
-						"profiles": "wheelchair",
-						"parameters": {
-							"encoder_options": "block_fords=true",
-							"elevation": true,
-							"maximum_snapping_radius": 50,
-							"ext_storages": {
-								"WayCategory": {},
-								"WaySurfaceType": {},
-								"Wheelchair": {
-									"KerbsOnCrossings": "true"
-								},
-								"OsmId": {}
 							}
 						}
 					}

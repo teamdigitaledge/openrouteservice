@@ -65,7 +65,7 @@ public class IsochronesRequest extends APIRequest {
     public static final String PARAM_TIME = "time";
 
 
-    @ApiModelProperty(name = PARAM_LOCATIONS, value = "The locations to use for the route as an array of `longitude/latitude` pairs",
+    @ApiModelProperty(name = PARAM_LOCATIONS, value = "The locations to use for the route as an array of `longitude/latitude` pairs in WGS 84 (EPSG:4326)",
             example = "[[8.681495,49.41461],[8.686507,49.41943]]",
             required = true)
     @JsonProperty(PARAM_LOCATIONS)
@@ -165,9 +165,8 @@ public class IsochronesRequest extends APIRequest {
     @JsonIgnore
     private boolean hasSmoothing = false;
 
-    @ApiModelProperty(name = PARAM_TIME, value = "Departure date and time provided in local time zone" +
-            "CUSTOM_KEYS:{'validWhen':{'ref':'arrival','valueNot':['*']}}",
-            example = "2020-01-31T12:45:00")
+    @ApiModelProperty(name = PARAM_TIME, value = "Departure date and time provided in local time zone",
+            example = "2020-01-31T12:45:00", hidden = true)
     @JsonProperty(PARAM_TIME)
     private LocalDateTime time;
     @JsonIgnore
