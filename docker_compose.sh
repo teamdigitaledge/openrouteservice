@@ -4,6 +4,6 @@
 # mv sweden-latest.osm.pbf ./openrouteservice/src/main/files/
 
 
-cd docker
+cd dockers
 docker-compose build
 mkdir -p conf elevation_cache graphs logs/ors logs/tomcat && docker-compose up
